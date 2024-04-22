@@ -1,0 +1,20 @@
+spring:
+  profiles:
+    active: integration-test
+  jpa:
+    show-sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+  flyway:
+    enabled: false
+    clean-disabled: false
+    clean-on-validation-error: true
+  jackson:
+    default-property-inclusion: non_null
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:9090/realms/platica
+          jwk-set-uri: http://localhost:9090/realms/platica/protocol/openid-connect/certs
