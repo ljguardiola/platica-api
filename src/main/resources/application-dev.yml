@@ -9,11 +9,7 @@ spring:
     show-sql: true
     open-in-view: false
     hibernate:
-      ddl-auto: update
-  flyway:
-    enabled: false
-    clean-disabled: true
-    clean-on-validation-error: true
+      ddl-auto: none
   jackson:
     default-property-inclusion: non_null
   security:
