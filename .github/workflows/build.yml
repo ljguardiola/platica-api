@@ -17,4 +17,6 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: Build with Maven
-        run: mvn -B package --file pom.xml
+        run: mvn -B package -DskipTests --file pom.xml
+      - name: Test with Maven
+        run: mvn test -Dgroups=unit --file pom.xml
