@@ -18,12 +18,12 @@ public class TestContainersConfiguration {
   @Bean
   @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
   KeycloakContainer keycloakContainer(DynamicPropertyRegistry registry) {
-    var container = new KeycloakContainer("quay.io/keycloak/keycloak:24.0.1");
+    var container = new KeycloakContainer("quay.io/keycloak/keycloak:24.0.3");
     container.withRealmImportFile("keycloak/realm.json");
     registry.add("spring.security.oauth2.resourceserver.jwt.issuer-uri",
-                 () -> container.getAuthServerUrl() + "/realms/platica");
+                 () -> container.getAuthServerUrl() + "/realms/gubrit");
     registry.add("spring.security.oauth2.resourceserver.jwt.jwk-set-uri",
-                 () -> container.getAuthServerUrl() + "/realms/platica/protocol/openid-connect/certs");
+                 () -> container.getAuthServerUrl() + "/realms/gubrit/protocol/openid-connect/certs");
     return container;
   }
 

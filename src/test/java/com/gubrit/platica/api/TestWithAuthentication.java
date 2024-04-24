@@ -35,7 +35,6 @@ public abstract class TestWithAuthentication {
     var params = new LinkedMultiValueMap<>() {{
       put("grant_type", singletonList("password"));
       put("client_id", singletonList("platica"));
-      put("client_secret", singletonList("jujedY3Ssut9cBxZnmKgWzTTW7n5092m"));
       put("username", singletonList("jperez"));
       put("password", singletonList("s3cr3t"));
     }};
