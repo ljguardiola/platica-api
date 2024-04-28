@@ -1,0 +1,36 @@
+version: '3.8'
+name: platica
+services:
+  postgres:
+    image: postgres:15.5
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "54321:5432"
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0.3
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/postgres
+      KC_DB_SCHEMA: keycloak
+      KC_DB_USERNAME: postgres
+      KC_DB_PASSWORD: postgres
+      KC_HOSTNAME: localhost
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    volumes:
+      - ./src/test/resources/keycloak:/opt/keycloak/data/import
+    command:
+      - "start-dev"
+      - "--import-realm"
+    ports:
+      - "8081:8080"
+    depends_on:
+      - postgres
+volumes:
+  db:
